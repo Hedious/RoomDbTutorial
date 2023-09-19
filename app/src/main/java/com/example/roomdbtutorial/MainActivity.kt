@@ -22,19 +22,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.ViewModelFactoryDsl
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.roomdbtutorial.data.WordDatabase
 import com.example.roomdbtutorial.data.WordRepository
 import com.example.roomdbtutorial.ui.theme.RoomDbTutorialTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    //private val mainViewModel: MainViewModel(WordRepository(WordDatabase.getDatabaseInstance(this))) by viewModels()
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainViewModel = MainViewModel(WordRepository(WordDatabase.getDatabaseInstance(this)))
-        //mainViewModel.setRepository(WordRepository(WordDatabase.getDatabaseInstance(this)))
+
         setContent {
             RoomDbTutorialTheme {
                 Container {
