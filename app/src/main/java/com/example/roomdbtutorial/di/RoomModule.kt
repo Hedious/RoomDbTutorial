@@ -2,7 +2,9 @@ package com.example.roomdbtutorial.di
 
 import android.content.Context
 import androidx.room.Room
+import com.example.roomdbtutorial.RoomWordDataSource
 import com.example.roomdbtutorial.data.WordDatabase
+import com.example.roomdbtutorial.data.WordLocalDataSource
 import com.example.roomdbtutorial.data.daos.WordDao
 import com.example.roomdbtutorial.data.models.Word
 import dagger.Module
@@ -22,5 +24,10 @@ object RoomModule {
     @Provides
     fun provideWordDao(wordDatabase: WordDatabase): WordDao {
         return wordDatabase.wordDao()
+    }
+
+    @Provides
+    fun provideLocalWordDataSource(wordDao: WordDao): WordLocalDataSource {
+        return RoomWordDataSource(wordDao)
     }
 }

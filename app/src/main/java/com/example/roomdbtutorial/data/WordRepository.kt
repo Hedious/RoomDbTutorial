@@ -4,11 +4,11 @@ import com.example.roomdbtutorial.data.daos.WordDao
 import com.example.roomdbtutorial.data.models.Word
 import javax.inject.Inject
 
-class WordRepository @Inject constructor(private val wordDao: WordDao) {
+class WordRepository @Inject constructor(private val localDataSource: WordLocalDataSource) {
 
     suspend fun insertWord(word: Word) {
-        wordDao.insertWord(word)
+        localDataSource.insertWord(word)
     }
 
-    fun getAllWords() = wordDao.getAllWords()
+    fun getAllWords() = localDataSource.getAllWords()
 }
